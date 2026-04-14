@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atualização Mensal ESAP — Lar Plásticos</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.5}
+.top-banner{background:#0f172a;color:white;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.banner-left{display:flex;align-items:center;gap:12px}
+.banner-logo{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#64748b;text-transform:uppercase}
+.banner-sep{color:#334155}
+.banner-title{font-size:15px;font-weight:600}
+.banner-right{display:flex;align-items:center;gap:16px;font-size:12px;color:#94a3b8}
+.prog-pill{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:4px 14px;display:flex;align-items:center;gap:8px}
+.prog-bar{width:80px;height:5px;background:#334155;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:#22c55e;border-radius:3px;transition:width .3s;width:0%}
+.page{max-width:880px;margin:0 auto;padding:28px 20px 90px}
+.intro-card{background:white;border-radius:12px;padding:24px 28px;margin-bottom:20px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.intro-card h1{font-size:20px;font-weight:700;margin-bottom:4px}
+.intro-card p{color:#64748b;font-size:13.5px;margin-bottom:18px}
+.meta-row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-end}
+.meta-item .meta-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;font-weight:600;margin-bottom:3px}
+.meta-item .meta-value{font-size:14px;font-weight:600}
+.meta-input{border:none;border-bottom:1.5px solid #e2e8f0;outline:none;font-size:14px;font-weight:600;padding:2px 4px;background:transparent;width:180px;color:#1e293b}
+.meta-input:focus{border-bottom-color:#6366f1}
+.filter-bar{background:white;border-radius:10px;padding:14px 20px;margin-bottom:20px;border:1px solid #e2e8f0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.filter-bar label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#64748b;white-space:nowrap}
+.filter-select{border:1.5px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:13px;font-family:inherit;color:#1e293b;background:white;cursor:pointer}
+.filter-select:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.1)}
+.filter-hint{font-size:12px;color:#94a3b8;margin-left:auto}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat-card{background:white;border-radius:10px;padding:14px;text-align:center;border:1px solid #e2e8f0}
+.stat-n{font-size:26px;font-weight:700}
+.stat-l{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.pillar-section{margin-bottom:20px;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.pillar-header{display:flex;align-items:center;gap:10px;padding:12px 18px;color:white}
+.pillar-header h2{font-size:14px;font-weight:700;flex:1}
+.pillar-count{background:rgba(255,255,255,.2);border-radius:12px;padding:2px 10px;font-size:11px}
+.theme-group{background:white}
+.theme-header{display:flex;align-items:center;justify-content:space-between;padding:9px 18px}
+.theme-header h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.theme-count{font-size:11px;color:#94a3b8}
+.action-item{border-top:1px solid #f1f5f9;padding:16px 18px;transition:background .15s}
+.active-item:hover{background:#fafbfc}
+.finished-item{opacity:.6}
+.item-header{display:flex;gap:12px;align-items:flex-start;margin-bottom:8px}
+.item-number{width:24px;height:24px;border-radius:50%;color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.item-title-block{flex:1}
+.item-title{font-size:13px;font-weight:600;color:#1e293b;margin-bottom:5px;line-height:1.4}
+.item-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.meta-chip{font-size:11px;color:#64748b}
+.badge{padding:2px 9px;border-radius:12px;font-size:10px;font-weight:600;letter-spacing:.2px}
+.last-update{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:9px 12px;margin:0 0 10px 36px;font-size:12px}
+.last-update-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;font-weight:600;margin-bottom:3px}
+.last-update-text{color:#475569;line-height:1.5}
+.update-fields{margin-left:36px}
+.field-row{display:flex;gap:10px;margin-bottom:8px}
+.field-group{display:flex;flex-direction:column;gap:4px}
+label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#64748b}
+.label-hint{font-weight:400;text-transform:none;letter-spacing:0;color:#9ca3af;font-size:10.5px}
+.status-select,.update-textarea{border:1.5px solid #e2e8f0;border-radius:8px;padding:7px 11px;font-size:13px;font-family:inherit;color:#1e293b;background:white;transition:border-color .15s,box-shadow .15s;resize:vertical}
+.status-select:focus,.update-textarea:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.1)}
+.update-textarea{width:100%;min-height:66px}
+.action-item.touched{border-left:3px solid #6366f1;padding-left:15px}
+.finished-toggle-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;background:#f9fafb;border-top:1px solid #f1f5f9;cursor:pointer;user-select:none}
+.finished-toggle-bar:hover{background:#f1f5f9}
+.toggle-label{font-size:12px;color:#64748b;font-weight:600}
+.toggle-hint{font-size:11px;color:#9ca3af}
+
+/* OVERALL SECTION */
+.overall-section{background:white;border-radius:12px;padding:22px 26px;margin-top:20px;border:1px solid #e2e8f0}
+.overall-section h3{font-size:15px;font-weight:700;margin-bottom:18px;color:#1e293b}
+.overall-field{margin-bottom:18px}
+
+/* INCIDENT CARD */
+.incident-card{border:2px solid #fca5a5;border-radius:10px;padding:16px 18px;background:#fff7f7;margin-bottom:18px}
+.incident-card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:0}
+.incident-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.incident-label-block{flex:1}
+.incident-title{font-size:13.5px;font-weight:700;color:#991b1b;margin-bottom:2px}
+.incident-subtitle{font-size:12px;color:#b91c1c;line-height:1.4}
+.incident-checkbox-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.incident-opt{display:flex;align-items:center;gap:7px;cursor:pointer;font-size:13px;color:#374151;font-weight:500;padding:7px 14px;border:1.5px solid #fca5a5;border-radius:8px;background:white;transition:all .15s;user-select:none}
+.incident-opt input[type=radio]{accent-color:#991b1b;width:15px;height:15px;cursor:pointer}
+.incident-opt:has(input:checked){background:#fee2e2;border-color:#ef4444}
+.incident-detail{margin-top:12px;display:none}
+.incident-detail.visible{display:block}
+
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e2e8f0;padding:12px 32px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 -2px 12px rgba(0,0,0,.06);z-index:100}
+.submit-info{font-size:13px;color:#64748b}
+.btn{border:none;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-primary{background:#0f172a;color:white}
+.btn-primary:hover{background:#1e293b}
+.btn-secondary{background:white;color:#374151;border:1.5px solid #d1d5db;margin-right:8px}
+.action-item.filtered-out{display:none}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .field-row{flex-direction:column}
+  .top-banner{padding:12px 14px}
+  .page{padding:14px 10px 90px}
+  .meta-row{gap:16px}
+  .incident-checkbox-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <div class="banner-left">
+    <div class="banner-logo">GEF Capital Partners</div>
+    <div class="banner-sep">|</div>
+    <div class="banner-title">Atualização Mensal ESAP — Lar Plásticos</div>
+  </div>
+  <div class="banner-right">
+    <span id="banner-showing">Exibindo 15 itens abertos</span>
+    <div class="prog-pill">
+      <span id="filled-count">0</span> atualizados
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="intro-card">
+  <h1>Atualização Mensal de Status</h1>
+  <p>Revise cada item de ação em aberto e compartilhe o que aconteceu este mês. Itens concluídos estão ocultos. Todos os campos são opcionais — pule os itens sem novidades.</p>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">Empresa</div>
+      <div class="meta-value">Lar Plásticos</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Período de Reporte</div>
+      <div class="meta-value" id="period">—</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Preenchido por</div>
+      <div class="meta-value"><input class="meta-input" type="text" id="submitter-name" placeholder="Seu nome" autocomplete="name"></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Data de Envio</div>
+      <div class="meta-value" id="today">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <label for="resp-filter">👤 Filtrar por responsável</label>
+  <select id="resp-filter" class="filter-select" onchange="applyFilter()">
+    <option value="all">Todos os responsáveis</option><option value="BRUNA BURAI">Bruna Burai</option><option value="BRUNA SOUZA">Bruna Souza</option><option value="LEONARDO">Leonardo</option><option value="Lucas">Lucas</option><option value="Nathalia">Nathalia</option><option value="Rafa">Rafa</option><option value="Rafa + Veridfiana">Rafa + Veridfiana</option><option value="Veridiana">Veridiana</option>
+  </select>
+  <span class="filter-hint" id="filter-hint">Exibindo todos os 15 itens abertos · 35 itens concluídos ocultos</span>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-n" style="color:#92400e">3</div>
+    <div class="stat-l">Em andamento</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-n" style="color:#1e40af">7</div>
+    <div class="stat-l">Iniciados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-n" style="color:#991b1b">5</div>
+    <div class="stat-l">Não iniciados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-n" style="color:#166534">35</div>
+    <div class="stat-l">Concluídos (ocultos)</div>
+  </div>
+</div>
+
+
+<div class="pillar-section">
+  <div class="pillar-header" style="background:#2d6a4f">
+    <span>🌿</span>
+    <h2>Ambiental</h2>
+    <span class="pillar-count">0 abertos · 8 concluídos</span>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #2d6a4f;background:#d8f3dc">
+      <h3 style="color:#2d6a4f">Eficiência de Recursos</h3>
+      <span class="theme-count">0 abertos · 1 concluídos</span>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 1 item concluído em Eficiência de Recursos</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="24">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">24</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that water intake is monitored and complies with the water extraction permit.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #2d6a4f;background:#d8f3dc">
+      <h3 style="color:#2d6a4f">Gestão de Resíduos</h3>
+      <span class="theme-count">0 abertos · 5 concluídos</span>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 5 itemns concluídos em Gestão de Resíduos</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="28">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">28</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Evaluate a solution for the storage of externally disposed waste in accordance with NBR 11.174 standards.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="36">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">36</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Implement electronic signature functionality.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="37">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">37</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Implementation of the Solid Waste Management Plan (PGRS) for all units that are applicable.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="43">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">43</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Provide adjustments to the ETE-sewage, so that all analysed parameters comply with the Decree N° 8.468/1976 at all times  (eg. DBO) and IFC PS. In case further upgrades are needed according to the local regulation, develop an action plan with associated capex.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="44">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">44</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Provide contention and environmental emergency kits for potential leakages or spills of chemical products</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #2d6a4f;background:#d8f3dc">
+      <h3 style="color:#2d6a4f">Mudanças Climáticas</h3>
+      <span class="theme-count">0 abertos · 2 concluídos</span>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 2 itemns concluídos em Mudanças Climáticas</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="39">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">39</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Measurement of GHG avoided emissions through plastic recycling and quarterly monitoring of this indicator at minimum</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="40">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">40</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Measurement of GHG emissions (scopes 1 e 2) - conducted annually</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+</div>
+
+<div class="pillar-section">
+  <div class="pillar-header" style="background:#1d4e89">
+    <span>👥</span>
+    <h2>Social</h2>
+    <span class="pillar-count">8 abertos · 19 concluídos</span>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #1d4e89;background:#dbeafe">
+      <h3 style="color:#1d4e89">Saúde e Segurança</h3>
+      <span class="theme-count">2 abertos · 9 concluídos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="20">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">20</div>
+        <div class="item-title-block">
+          <p class="item-title">Ensure that appropriate safety signage is available in each unit</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">AVCB compliant at all branches except Bahia, which is being actively addressed.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-20" name="status_20" class="status-select" onchange="onFieldChange(20)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-20" name="update_20" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(20)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-20" name="nextsteps_20" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(20)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="21">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">21</div>
+        <div class="item-title-block">
+          <p class="item-title">Ensure that each business unit monitors workplace accidents and addresses such cases appropriately (create a record control for accidents and applied corrective measures)</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">Communication protocol with unit managers for accident reporting in progress</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-21" name="status_21" class="status-select" onchange="onFieldChange(21)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-21" name="update_21" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(21)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-21" name="nextsteps_21" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(21)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 9 itemns concluídos em Saúde e Segurança</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="1">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">1</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Adaptation or Development of Occupational Medical Control Programs (PGR, in portuguese acronym) for all business units</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="2">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">2</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Adaptation or Development of Risk Management Program (RMP - PGR) for all business units</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="6">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">6</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Appoint a CIPA representative for business units that do not require the establishment of a formal CIPA</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="17">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">17</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that a particle matter exposure study is conducted at the headquarters' factory</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="19">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">19</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that all employees receive appropriate personal protective equipment (PPE) and training on its use</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="22">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">22</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that MSDS (Material Safety Data Sheets) are available in areas where chemicals are stored/used</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="30">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">30</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Hire additional health and safety technicians, in compliance with the national regulation NR 4 dimensioning (one per shift).</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="32">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">32</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Identify forklift operators and ensure that such employees receive appropriate training</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="45">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">45</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Provide evidence that CIPA (Internal Committee for Accident Prevention) meetings are taking place at least monthly for Lar Plásticos  in Atibaia</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #1d4e89;background:#dbeafe">
+      <h3 style="color:#1d4e89">Recursos Humanos</h3>
+      <span class="theme-count">2 abertos · 5 concluídos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Rafa" data-id="3">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">3</div>
+        <div class="item-title-block">
+          <p class="item-title">Adjust the number of people with disabilities (PCD, in portuguese acronym) according to the Brazilian Law of Inclusion of Persons with Disabilities, Law No. 13,146 of July 6, 2015 (Lar Atibaia) -</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Rafa</span>
+            <span class="meta-chip">📅 dec/25</span>
+            <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+            <span class="badge" style="background:#fef3c7;color:#92400e">Em andamento</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">7 medical certificates issued; 12 employees with certificates pending issuance. Process advancing.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-3" name="status_3" class="status-select" onchange="onFieldChange(3)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing"selected>Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-3" name="update_3" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(3)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-3" name="nextsteps_3" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(3)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Rafa" data-id="50">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">50</div>
+        <div class="item-title-block">
+          <p class="item-title">Diversity agenda – (committee establishment, diversity census, and policy development)</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Rafa</span>
+            <span class="meta-chip">📅 dez/26</span>
+            <span class="badge" style="background:#dcfce7;color:#166534">Baixa</span>
+            <span class="badge" style="background:#fee2e2;color:#991b1b">Não iniciado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-50" name="status_50" class="status-select" onchange="onFieldChange(50)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started"selected>Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-50" name="update_50" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(50)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-50" name="nextsteps_50" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(50)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 5 itemns concluídos em Recursos Humanos</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="BRUNA SOUZA" data-id="4">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">4</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Adjust the number of Young Apprentices according to the Apprentice Law, Law No. 10,097 of December 19, 2000 -  -</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA SOUZA</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA SOUZA" data-id="5">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">5</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">An RH internal study of the impact of the fourth shift system has to be performed and shared with Proparco.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA SOUZA</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA SOUZA" data-id="9">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">9</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Conduct monthly monitoring of the working hours, overtime hours and days of leave.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA SOUZA</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA SOUZA" data-id="10">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">10</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Conduct organizational climate surveys at least every two years (e.g., Great Place to Work)</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA SOUZA</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA SOUZA" data-id="14">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">14</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Develop a job and salary plan; equalize salaries for the same positions across different units, as well as benefits</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA SOUZA</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #1d4e89;background:#dbeafe">
+      <h3 style="color:#1d4e89">Cadeia de Fornecimento</h3>
+      <span class="theme-count">2 abertos · 2 concluídos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="12">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">12</div>
+        <div class="item-title-block">
+          <p class="item-title">Creation of suppliers audit reports</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#fee2e2;color:#991b1b">Não iniciado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-12" name="status_12" class="status-select" onchange="onFieldChange(12)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started"selected>Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-12" name="update_12" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(12)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-12" name="nextsteps_12" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(12)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="LEONARDO" data-id="27">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">27</div>
+        <div class="item-title-block">
+          <p class="item-title">Establish goals for tracked waste volume / number of assessed suppliers</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 LEONARDO</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#fee2e2;color:#991b1b">Não iniciado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-27" name="status_27" class="status-select" onchange="onFieldChange(27)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started"selected>Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-27" name="update_27" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(27)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-27" name="nextsteps_27" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(27)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 2 itemns concluídos em Cadeia de Fornecimento</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="11">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">11</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Creation of a supplier audit process that includes E&S assessment, with special attention to human rights-related issues.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="Veridiana" data-id="38">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">38</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Inclusion of clauses in contracts entered into with direct suppliers that ensure the supplier monitors its suppliers' workforce and ensures that its suppliers respect human rights and do not employ child or forced labor in their workforce.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Veridiana</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #1d4e89;background:#dbeafe">
+      <h3 style="color:#1d4e89">Comunidade</h3>
+      <span class="theme-count">2 abertos · 3 concluídos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="18">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">18</div>
+        <div class="item-title-block">
+          <p class="item-title">Ensure that all business units have adequate firefighting mechanisms, signage, and active emergency plans</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">AVCB (fire safety certificate) compliant at all branches except Bahia. Emergency plans pending for headquarters and all units; Bahia and headquarters to be prioritized. Remaining units to be addressed over the coming year.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-18" name="status_18" class="status-select" onchange="onFieldChange(18)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-18" name="update_18" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(18)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-18" name="nextsteps_18" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(18)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="49">
+      <div class="item-header">
+        <div class="item-number" style="background:#1d4e89">49</div>
+        <div class="item-title-block">
+          <p class="item-title">Submit the AVCBs (Fire Department Inspection Certificates) of units in Bahia, Ceará, and Pernambuco as soon as they are issued</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">AVCB compliant at all branches,  Manaus – AVCB issued and environmental waiver expected imminently. Rio de Janeiro – fully compliant. Headquarters – AVCB for CLI outstanding.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-49" name="status_49" class="status-select" onchange="onFieldChange(49)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-49" name="update_49" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(49)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-49" name="nextsteps_49" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(49)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 3 itemns concluídos em Comunidade</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="23">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">23</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that the Specific Terms of Reference - TER (IPHAN), is completely followed.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="25">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">25</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Ensure that, if any cultural heritage asset is found, IFC PS8 conditions for removal are met.</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="26">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">26</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Establish a routine to check if firefighting equipment is unobstructed and ready for use</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+</div>
+
+<div class="pillar-section">
+  <div class="pillar-header" style="background:#6b3fa0">
+    <span>⚖️</span>
+    <h2>Governança</h2>
+    <span class="pillar-count">1 abertos · 5 concluídos</span>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #6b3fa0;background:#ede9fe">
+      <h3 style="color:#6b3fa0">Executivos</h3>
+      <span class="theme-count">0 abertos · 2 concluídos</span>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 2 itemns concluídos em Executivos</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="7">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">7</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Approval of Internal Policies (Directors' Contract, Bylaws, Board Mandate)</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="46">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">46</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Stock Option</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #6b3fa0;background:#ede9fe">
+      <h3 style="color:#6b3fa0">Privacidade de Dados</h3>
+      <span class="theme-count">1 abertos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Nathalia" data-id="8">
+      <div class="item-header">
+        <div class="item-number" style="background:#6b3fa0">8</div>
+        <div class="item-title-block">
+          <p class="item-title">Compliance with LGPD (Brazilian Data Protection Law) and adaptation of language in contracts</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Nathalia</span>
+            <span class="meta-chip">📅 Dec/2024</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">LGPD compliance activities underway.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-8" name="status_8" class="status-select" onchange="onFieldChange(8)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-8" name="update_8" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(8)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-8" name="nextsteps_8" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(8)"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #6b3fa0;background:#ede9fe">
+      <h3 style="color:#6b3fa0">Conduta Ética</h3>
+      <span class="theme-count">0 abertos · 3 concluídos</span>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 3 itemns concluídos em Conduta Ética</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="Lucas" data-id="13">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">13</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Develop a Compliance and Anti-Corruption and Money Laundering Policy, aiming to comply with anti-corruption laws and the standards of the Foreign Corrupt Practices Act (FCPA).</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 Lucas</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="29">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">29</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Hire a senior professional responsible for compliance</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="35">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">35</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Implement a third-party managed whistleblowing channel and define an Ethics Committee</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+</div>
+
+<div class="pillar-section">
+  <div class="pillar-header" style="background:#374151">
+    <span>📋</span>
+    <h2>Geral</h2>
+    <span class="pillar-count">6 abertos · 3 concluídos</span>
+  </div>
+
+  <div class="theme-group">
+    <div class="theme-header" style="border-left:4px solid #374151;background:#f3f4f6">
+      <h3 style="color:#374151">Gestão</h3>
+      <span class="theme-count">6 abertos · 3 concluídos</span>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="15">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">15</div>
+        <div class="item-title-block">
+          <p class="item-title">Develop Environmental and Social Policy</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Jul/2025</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-15" name="status_15" class="status-select" onchange="onFieldChange(15)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-15" name="update_15" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(15)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-15" name="nextsteps_15" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(15)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="16">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">16</div>
+        <div class="item-title-block">
+          <p class="item-title">Develop Sustainability Report</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Jul/2026</span>
+            <span class="badge" style="background:#dcfce7;color:#166534">Baixa</span>
+            <span class="badge" style="background:#dbeafe;color:#1e40af">Iniciado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-16" name="status_16" class="status-select" onchange="onFieldChange(16)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started"selected>Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-16" name="update_16" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(16)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-16" name="nextsteps_16" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(16)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Rafa + Veridfiana" data-id="34">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">34</div>
+        <div class="item-title-block">
+          <p class="item-title">Implement a system to monitor ESG KPIs</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Rafa + Veridfiana</span>
+            <span class="meta-chip">📅 Jul/2024</span>
+            <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+            <span class="badge" style="background:#fef3c7;color:#92400e">Em andamento</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">Outstanding questions resolved. ESG KPIs to be submitted by end of January 2026.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-34" name="status_34" class="status-select" onchange="onFieldChange(34)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing"selected>Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-34" name="update_34" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(34)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-34" name="nextsteps_34" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(34)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="41">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">41</div>
+        <div class="item-title-block">
+          <p class="item-title">Obtain ISO 14001  certification</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#dcfce7;color:#166534">Baixa</span>
+            <span class="badge" style="background:#fee2e2;color:#991b1b">Não iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">ISO certification removed from current budget cycle; to be reassessed in 2026.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-41" name="status_41" class="status-select" onchange="onFieldChange(41)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started"selected>Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-41" name="update_41" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(41)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-41" name="nextsteps_41" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(41)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="42">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">42</div>
+        <div class="item-title-block">
+          <p class="item-title">Obtain ISO 45001 certification</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            <span class="meta-chip">📅 Dec/2025</span>
+            <span class="badge" style="background:#dcfce7;color:#166534">Baixa</span>
+            <span class="badge" style="background:#fee2e2;color:#991b1b">Não iniciado</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">ISO certification removed from current budget cycle; to be reassessed in 2026.</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-42" name="status_42" class="status-select" onchange="onFieldChange(42)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started"selected>Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing">Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-42" name="update_42" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(42)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-42" name="nextsteps_42" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(42)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-item active-item" data-responsible="Veridiana" data-id="48">
+      <div class="item-header">
+        <div class="item-number" style="background:#374151">48</div>
+        <div class="item-title-block">
+          <p class="item-title">Submit all pending licenses and permits (under 'Licenses')</p>
+          <div class="item-meta">
+            <span class="meta-chip">👤 Veridiana</span>
+            
+            <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+            <span class="badge" style="background:#fef3c7;color:#92400e">Em andamento</span>
+          </div>
+        </div>
+      </div>
+      <div class="last-update"><div class="last-update-label">Última atualização (Dez 2025)</div><div class="last-update-text">Cetre provided branch-level feedback: Fortaleza – CNAE classification issue under assessment; Pernambuco – licensing process advancing; Bahia – health surveillance item pending resolution;</div></div>
+      <div class="update-fields">
+        <div class="field-row">
+          <div class="field-group" style="flex:0 0 170px">
+            <label>Novo Status</label>
+            <select id="status-48" name="status_48" class="status-select" onchange="onFieldChange(48)">
+              <option value="">— sem alteração —</option>
+              <option value="Not started">Não iniciado</option>
+              <option value="Started">Iniciado</option>
+              <option value="Ongoing"selected>Em andamento</option>
+              <option value="Finished">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label>Atualização do mês <span class="label-hint">— o que aconteceu este mês? (opcional)</span></label>
+            <textarea id="update-48" name="update_48" class="update-textarea" placeholder="Descreva o progresso, ações realizadas, resultados…" rows="3" oninput="onFieldChange(48)"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>
+          <textarea id="nextsteps-48" name="nextsteps_48" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(48)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="finished-toggle-bar" onclick="toggleFinished(this)">
+      <span class="toggle-label">▸ Mostrar 3 itemns concluídos em Gestão</span>
+      <span class="toggle-hint">Sem atualização necessária</span>
+    </div>
+    <div class="finished-group" style="display:none">
+      <div class="action-item finished-item" data-responsible="LEONARDO" data-id="31">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">31</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Hiring a senior ESG Officer</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 LEONARDO</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="33">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">33</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Implement a system to monitor environmental licenses and permits</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fef3c7;color:#78350f">Moderada</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item finished-item" data-responsible="BRUNA BURAI" data-id="47">
+        <div class="item-header">
+          <div class="item-number" style="background:#9ca3af">47</div>
+          <div class="item-title-block">
+            <p class="item-title" style="color:#6b7280">Structure an ESG Committee</p>
+            <div class="item-meta">
+              <span class="meta-chip">👤 BRUNA BURAI</span>
+              <span class="badge" style="background:#fee2e2;color:#7f1d1d">Alta</span>
+              <span class="badge" style="background:#dcfce7;color:#166534">Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+</div>
+
+
+<div class="overall-section">
+  <h3>Comentários Gerais e Alertas</h3>
+
+  <!-- INCIDENT CHECK -->
+  <div class="incident-card">
+    <div class="incident-card-header">
+      <div class="incident-icon">⚠️</div>
+      <div class="incident-label-block">
+        <div class="incident-title">Acidentes graves ou eventos socioambientais relevantes</div>
+        <div class="incident-subtitle">Houve, neste mês, algum acidente grave ou evento material de natureza social ou ambiental? (ex.: greves, incêndios, vazamentos, fatalidades, paralisações)</div>
+      </div>
+    </div>
+    <div class="incident-checkbox-row">
+      <label class="incident-opt">
+        <input type="radio" name="incident_flag" value="no" checked onchange="toggleIncidentDetail(false)">
+        Não ocorreu nenhum evento
+      </label>
+      <label class="incident-opt">
+        <input type="radio" name="incident_flag" value="yes" onchange="toggleIncidentDetail(true)">
+        Sim, ocorreu um evento — descreva abaixo
+      </label>
+    </div>
+    <div class="incident-detail" id="incident-detail">
+      <textarea class="update-textarea" name="incident_description" rows="3" style="margin-top:10px" placeholder="Descreva o evento: o que aconteceu, quando, onde, qual o impacto e as medidas tomadas até o momento…"></textarea>
+    </div>
+  </div>
+
+  <div class="overall-field">
+    <div class="field-group">
+      <label>Bloqueios ou questões que requerem atenção da GEF Capital <span class="label-hint">(opcional)</span></label>
+      <textarea class="update-textarea" rows="3" name="blockers" placeholder="Descreva bloqueios, riscos ou itens em que precisa de suporte…"></textarea>
+    </div>
+  </div>
+  <div class="overall-field">
+    <div class="field-group">
+      <label>Principais destaques do mês <span class="label-hint">(opcional)</span></label>
+      <textarea class="update-textarea" rows="3" name="highlights" placeholder="Principais conquistas ou marcos alcançados neste mês…"></textarea>
+    </div>
+  </div>
+  <div class="overall-field">
+    <div class="field-group">
+      <label>Observações adicionais <span class="label-hint">(opcional)</span></label>
+      <textarea class="update-textarea" rows="2" name="notes" placeholder="Qualquer outro ponto a registrar…"></textarea>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="submit-bar">
+  <div class="submit-info" id="submit-info">0 itens atualizados nesta sessão</div>
+  <div>
+    <button class="btn btn-secondary" onclick="saveDraft()">Salvar rascunho</button>
+    <button class="btn btn-primary" onclick="submitForm()">Enviar atualização →</button>
+  </div>
+</div>
+
+<script>
+const now = new Date();
+const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const msC   = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+document.getElementById('period').textContent = meses[now.getMonth()] + ' ' + now.getFullYear();
+document.getElementById('today').textContent  = msC[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+
+let touchedItems = new Set();
+
+function onFieldChange(id) {
+  const u = document.getElementById('update-' + id);
+  const s = document.getElementById('status-' + id);
+  const n = document.getElementById('nextsteps-' + id);
+  const item = document.querySelector('[data-id="' + id + '"]');
+  const has = (u && u.value.trim()) || (s && s.value) || (n && n.value.trim());
+  if (has) { touchedItems.add(id); item && item.classList.add('touched'); }
+  else      { touchedItems.delete(id); item && item.classList.remove('touched'); }
+  updateProgress();
+}
+
+function updateProgress() {
+  const visible = document.querySelectorAll('.active-item:not(.filtered-out)').length;
+  const filled  = touchedItems.size;
+  document.getElementById('filled-count').textContent = filled;
+  document.getElementById('submit-info').textContent  = filled + ' item' + (filled !== 1 ? 'ns' : '') + ' atualizados nesta sessão';
+  const pct = visible > 0 ? Math.min(filled / visible * 100, 100) : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+}
+
+function toggleIncidentDetail(show) {
+  document.getElementById('incident-detail').classList.toggle('visible', show);
+}
+
+function applyFilter() {
+  const val = document.getElementById('resp-filter').value;
+  const its = document.querySelectorAll('.active-item');
+  let shown = 0;
+  its.forEach(el => {
+    const match = val === 'all' || (el.dataset.responsible || '').includes(val) || el.dataset.responsible === val;
+    el.classList.toggle('filtered-out', !match);
+    if (match) shown++;
+  });
+  const hint = val === 'all'
+    ? 'Exibindo todos os ' + shown + ' itens abertos · 35 itens concluídos ocultos'
+    : 'Exibindo ' + shown + ' item' + (shown !== 1 ? 'ns' : '') + ' atribuídos a ' + val + ' · itens concluídos ocultos';
+  document.getElementById('filter-hint').textContent = hint;
+  document.getElementById('banner-showing').textContent = val === 'all' ? 'Exibindo ' + shown + ' itens abertos' : shown + ' itens de ' + val;
+  updateProgress();
+}
+
+function toggleFinished(bar) {
+  const group = bar.nextElementSibling;
+  const open  = group.style.display !== 'none';
+  group.style.display = open ? 'none' : 'block';
+  const label = bar.querySelector('.toggle-label');
+  label.textContent = label.textContent.replace(open ? '▾' : '▸', open ? '▸' : '▾');
+}
+
+function saveDraft() {
+  const data = {};
+  document.querySelectorAll('select, textarea, input').forEach(el => {
+    const key = el.id || el.name;
+    if (key) data[key] = el.type === 'radio' ? (el.checked ? el.value : undefined) : el.value;
+  });
+  data.__ts = new Date().toISOString();
+  sessionStorage.setItem('esap_draft_lar', JSON.stringify(data));
+  const btn = document.querySelector('.btn-secondary');
+  btn.textContent = '✓ Salvo';
+  setTimeout(() => btn.textContent = 'Salvar rascunho', 2000);
+}
+
+(function restoreDraft() {
+  const raw = sessionStorage.getItem('esap_draft_lar');
+  if (!raw) return;
+  const data = JSON.parse(raw);
+  Object.entries(data).forEach(([k,v]) => {
+    if (!v || k === '__ts') return;
+    const els = document.querySelectorAll('[name="' + k + '"],[id="' + k + '"]');
+    els.forEach(el => {
+      if (el.type === 'radio') { if (el.value === v) el.checked = true; }
+      else el.value = v;
+    });
+  });
+  if (data.incident_flag === 'yes') toggleIncidentDetail(true);
+  document.querySelectorAll('.active-item').forEach(el => {
+    const id = parseInt(el.dataset.id);
+    const u = document.getElementById('update-' + id);
+    const s = document.getElementById('status-' + id);
+    if ((u && u.value.trim()) || (s && s.value)) {
+      touchedItems.add(id); el.classList.add('touched');
+    }
+  });
+  updateProgress();
+})();
+
+
+const POWER_AUTOMATE_URL = 'COLE_AQUI_O_URL_DO_POWER_AUTOMATE';
+
+async function submitForm() {
+  const name = document.getElementById('submitter-name').value.trim();
+  if (!name) {
+    document.getElementById('submitter-name').focus();
+    document.getElementById('submitter-name').style.borderBottomColor = '#ef4444';
+    alert('Por favor, insira seu nome antes de enviar.');
+    return;
+  }
+  if (touchedItems.size === 0) {
+    if (!confirm('Nenhum item foi atualizado. Deseja enviar mesmo assim?')) return;
+  }
+
+  // Collect updated items only
+  const updatedItems = [];
+  document.querySelectorAll('.active-item').forEach(el => {
+    const id = parseInt(el.dataset.id);
+    const statusEl = document.getElementById('status-' + id);
+    const updateEl = document.getElementById('update-' + id);
+    const nextstepsEl = document.getElementById('nextsteps-' + id);
+    const statusVal = statusEl ? statusEl.value : '';
+    const updateVal = updateEl ? updateEl.value.trim() : '';
+    const nextstepsVal = nextstepsEl ? nextstepsEl.value.trim() : '';
+    if (statusVal || updateVal || nextstepsVal) {
+      updatedItems.push({
+        id,
+        action: el.querySelector('.item-title') ? el.querySelector('.item-title').textContent.trim() : '',
+        status: statusVal,
+        update: updateVal,
+        nextsteps: nextstepsVal
+      });
+    }
+  });
+
+  const incidentFlag = document.querySelector('input[name="incident_flag"]:checked');
+  const payload = {
+    company: document.querySelector('.meta-value') ? document.querySelector('.meta-value').textContent.trim() : '',
+    submitter: name,
+    period: document.getElementById('period') ? document.getElementById('period').textContent : '',
+    date: new Date().toLocaleDateString('pt-BR'),
+    incident_flag: incidentFlag ? incidentFlag.value : 'no',
+    incident_description: (document.querySelector('[name="incident_description"]') || {}).value || '',
+    blockers:   (document.querySelector('[name="blockers"]') || {}).value || '',
+    highlights: (document.querySelector('[name="highlights"]') || {}).value || '',
+    notes:      (document.querySelector('[name="notes"]') || {}).value || '',
+    items: updatedItems
+  };
+
+  const btn = document.querySelector('.btn-primary');
+  btn.textContent = 'Enviando…';
+  btn.disabled = true;
+
+  try {
+    await fetch(POWER_AUTOMATE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    });
+    sessionStorage.removeItem('esap_draft_lar_plasticos');
+    alert('Obrigado, ' + name + '!
+
+Sua atualização foi enviada para a GEF Capital Partners.
+Você receberá uma confirmação por email em breve.');
+    btn.textContent = '✓ Enviado';
+  } catch(e) {
+    btn.textContent = 'Enviar atualização →';
+    btn.disabled = false;
+    alert('Erro ao enviar. Verifique sua conexão e tente novamente.
+
+Detalhes: ' + e.message);
+  }
+}
+
+</script>
+</body>
+</html>
