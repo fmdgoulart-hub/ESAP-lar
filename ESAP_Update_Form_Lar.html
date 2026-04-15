@@ -1619,17 +1619,12 @@ async function submitForm() {
       mode: 'no-cors'
     });
     sessionStorage.removeItem('esap_draft_lar_plasticos');
-    alert('Obrigado, ' + name + '!
-
-Sua atualização foi enviada para a GEF Capital Partners.
-Você receberá uma confirmação por email em breve.');
+    alert('Obrigado, ' + name + '!\n\nSua atualização foi enviada para a GEF Capital Partners.\nVocê receberá uma confirmação por email em breve.');
     btn.textContent = '✓ Enviado';
   } catch(e) {
     btn.textContent = 'Enviar atualização →';
     btn.disabled = false;
-    alert('Erro ao enviar. Verifique sua conexão e tente novamente.
-
-Detalhes: ' + e.message);
+    alert('Erro ao enviar. Verifique sua conexão e tente novamente.\n\nDetalhes: ' + e.message);
   }
 }
 
