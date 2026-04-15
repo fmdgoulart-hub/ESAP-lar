@@ -1612,12 +1612,15 @@ async function submitForm() {
   btn.disabled = true;
 
   try {
-    await fetch(POWER_AUTOMATE_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
-    });
+    const response = await fetch(POWER_AUTOMATE_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
+
+if (!response.ok) {
+  throw new Error('HTTP ' + response.status);
+}
     sessionStorage.removeItem('esap_draft_lar_plasticos');
     alert('Obrigado, ' + name + '!\n\nSua atualização foi enviada para a GEF Capital Partners.\nVocê receberá uma confirmação por email em breve.');
     btn.textContent = '✓ Enviado';
