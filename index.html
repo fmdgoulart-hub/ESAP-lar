@@ -521,35 +521,35 @@ function mostrarErroCarregamento(mensagem) {
   if (btn) btn.disabled = true;
 }
 
-let EMAIL_CONFIRMADO = null;
+let CODIGO_CONFIRMADO = null;
 
-function mostrarPortaoDeEmail(empresaNome, mensagemErro) {
+function mostrarPortaoDeCodigo(empresaNome, mensagemErro) {
   document.getElementById('itens-container').innerHTML =
     '<div style="max-width:420px;margin:40px auto;text-align:center;padding:32px 24px;background:white;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)">' +
-      '<p style="font-weight:600;margin-bottom:6px">Confirme seu e-mail para continuar</p>' +
-      '<p style="font-size:13px;color:#64748b;margin-bottom:16px">Digite o e-mail cadastrado para ' + escapeHtml(empresaNome || 'sua empresa') + ' para liberar o formulário.</p>' +
+      '<p style="font-weight:600;margin-bottom:6px">Digite o código de acesso</p>' +
+      '<p style="font-size:13px;color:#64748b;margin-bottom:16px">Enviado por e-mail para ' + escapeHtml(empresaNome || 'sua empresa') + ' junto com este link.</p>' +
       (mensagemErro ? '<p style="font-size:13px;color:#991b1b;margin-bottom:12px">' + escapeHtml(mensagemErro) + '</p>' : '') +
-      '<input type="email" id="email-confirmacao" class="meta-input" style="width:100%;text-align:center;margin-bottom:12px" placeholder="seu.email@empresa.com">' +
-      '<button class="btn btn-primary" style="width:100%" onclick="confirmarEmail()">Continuar</button>' +
+      '<input type="text" inputmode="numeric" id="codigo-acesso" class="meta-input" style="width:100%;text-align:center;letter-spacing:2px;font-size:16px;margin-bottom:12px" placeholder="000000" maxlength="6">' +
+      '<button class="btn btn-primary" style="width:100%" onclick="confirmarCodigo()">Continuar</button>' +
     '</div>';
-  const el = document.getElementById('email-confirmacao');
-  if (el) { el.focus(); el.addEventListener('keydown', function(ev) { if (ev.key === 'Enter') confirmarEmail(); }); }
+  const el = document.getElementById('codigo-acesso');
+  if (el) { el.focus(); el.addEventListener('keydown', function(ev) { if (ev.key === 'Enter') confirmarCodigo(); }); }
 }
 
-async function confirmarEmail() {
-  const email = document.getElementById('email-confirmacao').value.trim();
-  if (!email) return;
+async function confirmarCodigo() {
+  const pin = document.getElementById('codigo-acesso').value.trim();
+  if (!pin) return;
   document.getElementById('itens-container').innerHTML = '<p style="text-align:center;color:#94a3b8;padding:60px 0;font-size:14px">Verificando…</p>';
   try {
-    const resp = await fetch(APPS_SCRIPT_URL + '?token=' + encodeURIComponent(TOKEN) + '&email=' + encodeURIComponent(email));
+    const resp = await fetch(APPS_SCRIPT_URL + '?token=' + encodeURIComponent(TOKEN) + '&pin=' + encodeURIComponent(pin));
     const dados = await resp.json();
 
-    if (dados.erro === 'email_invalido') return mostrarPortaoDeEmail(dados.empresaNome, 'E-mail não corresponde ao cadastrado. Tente novamente.');
+    if (dados.erro === 'pin_invalido') return mostrarPortaoDeCodigo(dados.empresaNome, 'Código incorreto. Confira o e-mail e tente novamente.');
     if (dados.erro === 'token_invalido') return mostrarErroCarregamento('Link inválido. Peça um novo link à GEF Capital.');
     if (dados.erro === 'token_expirado') return mostrarErroCarregamento('Este link expirou. Peça um novo link à GEF Capital.');
     if (dados.erro) return mostrarErroCarregamento(dados.detalhe || 'Erro desconhecido.');
 
-    EMAIL_CONFIRMADO = email;
+    CODIGO_CONFIRMADO = pin;
     renderItens(dados);
     restoreDraft();
     applyFilter();
@@ -571,11 +571,11 @@ async function carregarFormulario() {
     if (dados.erro === 'token_expirado') return mostrarErroCarregamento('Este link expirou. Peça um novo link à GEF Capital.');
     if (dados.erro) return mostrarErroCarregamento(dados.detalhe || 'Erro desconhecido.');
 
-    // O doGet, sem e-mail, so confirma o token e devolve o nome da empresa —
-    // ainda nao libera os itens. Mostra o portao de confirmacao de e-mail.
-    if (dados.precisaEmail) {
+    // O doGet, sem codigo, so confirma o token e devolve o nome da empresa —
+    // ainda nao libera os itens. Mostra o portao de codigo de acesso.
+    if (dados.precisaPin) {
       document.getElementById('empresa-nome').textContent = dados.empresaNome || '';
-      return mostrarPortaoDeEmail(dados.empresaNome);
+      return mostrarPortaoDeCodigo(dados.empresaNome);
     }
 
     renderItens(dados);
@@ -627,7 +627,7 @@ async function submitForm() {
   const incidentFlag = document.querySelector('input[name="incident_flag"]:checked');
   const payload = {
     token: TOKEN,
-    email: EMAIL_CONFIRMADO,
+    pin: CODIGO_CONFIRMADO,
     submitter: name,
     itens: updatedItems,
     eventoGrave: incidentFlag ? incidentFlag.value === 'yes' : false,
@@ -652,7 +652,7 @@ async function submitForm() {
 
     if (resultado.erro === 'token_invalido') throw new Error('Link inválido. Peça um novo link à GEF Capital.');
     if (resultado.erro === 'token_expirado') throw new Error('Este link expirou. Peça um novo link à GEF Capital.');
-    if (resultado.erro === 'email_invalido') throw new Error('E-mail de confirmação não corresponde ao cadastrado. Recarregue a página e confirme novamente.');
+    if (resultado.erro === 'pin_invalido') throw new Error('Código de acesso inválido. Recarregue a página e confirme novamente.');
     if (resultado.erro === 'ja_respondido') throw new Error('Esta atualização já foi enviada anteriormente.');
     if (!resultado.ok) throw new Error(resultado.detalhe || 'Erro desconhecido');
 
