@@ -230,7 +230,7 @@ label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.
   <div class="submit-info" id="submit-info">0 itens atualizados nesta sessão</div>
   <div>
     <button class="btn btn-secondary" onclick="saveDraft()">Salvar rascunho</button>
-    <button class="btn btn-primary" onclick="submitForm()">Enviar atualização →</button>
+    <button class="btn btn-primary" onclick="submitForm()" disabled>Enviar atualização →</button>
   </div>
 </div>
 
@@ -507,6 +507,9 @@ function renderItens(dados) {
   });
 
   document.getElementById('period').textContent = dados.mes || meses[now.getMonth()] + ' ' + now.getFullYear();
+
+  const btnEnviar = document.querySelector('.btn-primary');
+  if (btnEnviar) btnEnviar.disabled = false;
 }
 
 function mostrarErroCarregamento(mensagem) {
@@ -516,6 +519,43 @@ function mostrarErroCarregamento(mensagem) {
     '</div>';
   const btn = document.querySelector('.btn-primary');
   if (btn) btn.disabled = true;
+}
+
+let EMAIL_CONFIRMADO = null;
+
+function mostrarPortaoDeEmail(empresaNome, mensagemErro) {
+  document.getElementById('itens-container').innerHTML =
+    '<div style="max-width:420px;margin:40px auto;text-align:center;padding:32px 24px;background:white;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)">' +
+      '<p style="font-weight:600;margin-bottom:6px">Confirme seu e-mail para continuar</p>' +
+      '<p style="font-size:13px;color:#64748b;margin-bottom:16px">Digite o e-mail cadastrado para ' + escapeHtml(empresaNome || 'sua empresa') + ' para liberar o formulário.</p>' +
+      (mensagemErro ? '<p style="font-size:13px;color:#991b1b;margin-bottom:12px">' + escapeHtml(mensagemErro) + '</p>' : '') +
+      '<input type="email" id="email-confirmacao" class="meta-input" style="width:100%;text-align:center;margin-bottom:12px" placeholder="seu.email@empresa.com">' +
+      '<button class="btn btn-primary" style="width:100%" onclick="confirmarEmail()">Continuar</button>' +
+    '</div>';
+  const el = document.getElementById('email-confirmacao');
+  if (el) { el.focus(); el.addEventListener('keydown', function(ev) { if (ev.key === 'Enter') confirmarEmail(); }); }
+}
+
+async function confirmarEmail() {
+  const email = document.getElementById('email-confirmacao').value.trim();
+  if (!email) return;
+  document.getElementById('itens-container').innerHTML = '<p style="text-align:center;color:#94a3b8;padding:60px 0;font-size:14px">Verificando…</p>';
+  try {
+    const resp = await fetch(APPS_SCRIPT_URL + '?token=' + encodeURIComponent(TOKEN) + '&email=' + encodeURIComponent(email));
+    const dados = await resp.json();
+
+    if (dados.erro === 'email_invalido') return mostrarPortaoDeEmail(dados.empresaNome, 'E-mail não corresponde ao cadastrado. Tente novamente.');
+    if (dados.erro === 'token_invalido') return mostrarErroCarregamento('Link inválido. Peça um novo link à GEF Capital.');
+    if (dados.erro === 'token_expirado') return mostrarErroCarregamento('Este link expirou. Peça um novo link à GEF Capital.');
+    if (dados.erro) return mostrarErroCarregamento(dados.detalhe || 'Erro desconhecido.');
+
+    EMAIL_CONFIRMADO = email;
+    renderItens(dados);
+    restoreDraft();
+    applyFilter();
+  } catch (e) {
+    mostrarErroCarregamento('Verifique sua conexão e tente novamente. Detalhes: ' + e.message);
+  }
 }
 
 async function carregarFormulario() {
@@ -530,6 +570,13 @@ async function carregarFormulario() {
     if (dados.erro === 'token_invalido') return mostrarErroCarregamento('Link inválido. Peça um novo link à GEF Capital.');
     if (dados.erro === 'token_expirado') return mostrarErroCarregamento('Este link expirou. Peça um novo link à GEF Capital.');
     if (dados.erro) return mostrarErroCarregamento(dados.detalhe || 'Erro desconhecido.');
+
+    // O doGet, sem e-mail, so confirma o token e devolve o nome da empresa —
+    // ainda nao libera os itens. Mostra o portao de confirmacao de e-mail.
+    if (dados.precisaEmail) {
+      document.getElementById('empresa-nome').textContent = dados.empresaNome || '';
+      return mostrarPortaoDeEmail(dados.empresaNome);
+    }
 
     renderItens(dados);
     restoreDraft();
@@ -580,6 +627,7 @@ async function submitForm() {
   const incidentFlag = document.querySelector('input[name="incident_flag"]:checked');
   const payload = {
     token: TOKEN,
+    email: EMAIL_CONFIRMADO,
     submitter: name,
     itens: updatedItems,
     eventoGrave: incidentFlag ? incidentFlag.value === 'yes' : false,
@@ -604,6 +652,7 @@ async function submitForm() {
 
     if (resultado.erro === 'token_invalido') throw new Error('Link inválido. Peça um novo link à GEF Capital.');
     if (resultado.erro === 'token_expirado') throw new Error('Este link expirou. Peça um novo link à GEF Capital.');
+    if (resultado.erro === 'email_invalido') throw new Error('E-mail de confirmação não corresponde ao cadastrado. Recarregue a página e confirme novamente.');
     if (resultado.erro === 'ja_respondido') throw new Error('Esta atualização já foi enviada anteriormente.');
     if (!resultado.ok) throw new Error(resultado.detalhe || 'Erro desconhecido');
 
