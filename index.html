@@ -236,6 +236,8 @@ label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.
 
 <script>
 const now = new Date();
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLhsfWUdJUKYQYcBxTphX5QQDCIoCNFdYvxcbBgry76Yue6MpXU7gzWI44cAVWQ5BXsA/exec';
+const TOKEN = new URLSearchParams(location.search).get('token');
 const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const msC   = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 document.getElementById('period').textContent = meses[now.getMonth()] + ' ' + now.getFullYear();
@@ -539,9 +541,6 @@ async function carregarFormulario() {
 
 carregarFormulario();
 
-
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLhsfWUdJUKYQYcBxTphX5QQDCIoCNFdYvxcbBgry76Yue6MpXU7gzWI44cAVWQ5BXsA/exec';
-const TOKEN = new URLSearchParams(location.search).get('token');
 
 async function submitForm() {
   const name = document.getElementById('submitter-name').value.trim();
