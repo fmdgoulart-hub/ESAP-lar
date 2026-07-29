@@ -1558,7 +1558,8 @@ function saveDraft() {
 })();
 
 
-const POWER_AUTOMATE_URL = 'https://defaultcc77ee4ccf5f4df6bd7a915c02af4a.d9.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/d275660289ee4a2ea1e03490b1948954/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=oUAjykwCZ_eKdhvtlRmZcbeGo7-zYEOHPHyutDuldWw';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLhsfWUdJUKYQYcBxTphX5QQDCIoCNFdYvxcbBgry76Yue6MpXU7gzWI44cAVWQ5BXsA/exec';
+const TOKEN = new URLSearchParams(location.search).get('token');
 
 async function submitForm() {
   const name = document.getElementById('submitter-name').value.trim();
@@ -1568,11 +1569,14 @@ async function submitForm() {
     alert('Por favor, insira seu nome antes de enviar.');
     return;
   }
+  if (!TOKEN) {
+    alert('Link inválido: token não encontrado na URL. Peça um novo link.');
+    return;
+  }
   if (touchedItems.size === 0) {
     if (!confirm('Nenhum item foi atualizado. Deseja enviar mesmo assim?')) return;
   }
 
-  // Collect updated items only
   const updatedItems = [];
   document.querySelectorAll('.active-item').forEach(el => {
     const id = parseInt(el.dataset.id);
@@ -1584,27 +1588,24 @@ async function submitForm() {
     const nextstepsVal = nextstepsEl ? nextstepsEl.value.trim() : '';
     if (statusVal || updateVal || nextstepsVal) {
       updatedItems.push({
-        id,
-        action: el.querySelector('.item-title') ? el.querySelector('.item-title').textContent.trim() : '',
+        codigo: String(id),
         status: statusVal,
-        update: updateVal,
-        nextsteps: nextstepsVal
+        oQueAconteceu: updateVal,
+        proximosPassos: nextstepsVal
       });
     }
   });
 
   const incidentFlag = document.querySelector('input[name="incident_flag"]:checked');
   const payload = {
-    company: document.querySelector('.meta-value') ? document.querySelector('.meta-value').textContent.trim() : '',
+    token: TOKEN,
     submitter: name,
-    period: document.getElementById('period') ? document.getElementById('period').textContent : '',
-    date: new Date().toLocaleDateString('pt-BR'),
-    incident_flag: incidentFlag ? incidentFlag.value : 'no',
-    incident_description: (document.querySelector('[name="incident_description"]') || {}).value || '',
-    blockers:   (document.querySelector('[name="blockers"]') || {}).value || '',
-    highlights: (document.querySelector('[name="highlights"]') || {}).value || '',
-    notes:      (document.querySelector('[name="notes"]') || {}).value || '',
-    items: updatedItems
+    itens: updatedItems,
+    eventoGrave: incidentFlag ? incidentFlag.value === 'yes' : false,
+    eventoGraveDescricao: (document.querySelector('[name="incident_description"]') || {}).value || '',
+    bloqueios:   (document.querySelector('[name="blockers"]') || {}).value || '',
+    destaques:   (document.querySelector('[name="highlights"]') || {}).value || '',
+    observacoes: (document.querySelector('[name="notes"]') || {}).value || ''
   };
 
   const btn = document.querySelector('.btn-primary');
@@ -1612,17 +1613,21 @@ async function submitForm() {
   btn.disabled = true;
 
   try {
-    const response = await fetch(POWER_AUTOMATE_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(payload)
-});
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
 
-if (!response.ok) {
-  throw new Error('HTTP ' + response.status);
-}
-    sessionStorage.removeItem('esap_draft_lar_plasticos');
-    alert('Obrigado, ' + name + '!\n\nSua atualização foi enviada para a GEF Capital Partners.\nVocê receberá uma confirmação por email em breve.');
+    const resultado = await response.json();
+
+    if (resultado.erro === 'token_invalido') throw new Error('Link inválido. Peça um novo link à GEF Capital.');
+    if (resultado.erro === 'token_expirado') throw new Error('Este link expirou. Peça um novo link à GEF Capital.');
+    if (resultado.erro === 'ja_respondido') throw new Error('Esta atualização já foi enviada anteriormente.');
+    if (!resultado.ok) throw new Error(resultado.detalhe || 'Erro desconhecido');
+
+    sessionStorage.removeItem('esap_draft_lar');
+    alert('Obrigado, ' + name + '!\n\nSua atualização foi enviada para a GEF Capital Partners.');
     btn.textContent = '✓ Enviado';
   } catch(e) {
     btn.textContent = 'Enviar atualização →';
