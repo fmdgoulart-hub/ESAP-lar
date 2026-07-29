@@ -111,7 +111,7 @@ label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.
   <div class="banner-left">
     <div class="banner-logo">GEF Capital Partners</div>
     <div class="banner-sep">|</div>
-    <div class="banner-title">Atualização Mensal ESAP — Lar Plásticos</div>
+    <div class="banner-title" id="banner-title">Atualização Mensal ESAP</div>
   </div>
   <div class="banner-right">
     <span id="banner-showing">Exibindo 15 itens abertos</span>
@@ -422,6 +422,9 @@ function renderItemConcluido(item) {
 
 function renderItens(dados) {
   document.getElementById('empresa-nome').textContent = dados.empresaNome || '';
+  const tituloComEmpresa = 'Atualização Mensal ESAP' + (dados.empresaNome ? ' — ' + dados.empresaNome : '');
+  document.getElementById('banner-title').textContent = tituloComEmpresa;
+  document.title = tituloComEmpresa;
 
   const porPilar = {};
   dados.itens.forEach(function(item) {
@@ -569,6 +572,9 @@ async function carregarFormulario() {
     // ainda nao libera os itens. Mostra o portao de codigo de acesso.
     if (dados.precisaPin) {
       document.getElementById('empresa-nome').textContent = dados.empresaNome || '';
+      const titulo = 'Atualização Mensal ESAP' + (dados.empresaNome ? ' — ' + dados.empresaNome : '');
+      document.getElementById('banner-title').textContent = titulo;
+      document.title = titulo;
       return mostrarPortaoDeCodigo(dados.empresaNome);
     }
 
