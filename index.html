@@ -370,7 +370,7 @@ function renderItemAberto(item) {
           '<select id="status-' + item.codigo + '" name="status_' + item.codigo + '" class="status-select" onchange="onFieldChange(\'' + item.codigo + '\')">' +
             '<option value="">— sem alteração —</option>' +
             ['Nao iniciado','Em andamento','Concluido'].map(function(v) {
-              return '<option value="' + v + '"' + (item.status === v ? ' selected' : '') + '>' + STATUS_INFO[v].label + '</option>';
+              return '<option value="' + v + '">' + STATUS_INFO[v].label + '</option>';
             }).join('') +
           '</select>' +
         '</div>' +
