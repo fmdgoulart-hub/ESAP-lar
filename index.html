@@ -171,6 +171,7 @@ label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.
 </div>
 
 
+<div id="progresso-panel"></div>
 <div id="itens-container"><p style="text-align:center;color:#94a3b8;padding:60px 0;font-size:14px">Carregando itens…</p></div>
 
 <div class="overall-section">
@@ -234,6 +235,7 @@ label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.
 const now = new Date();
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLhsfWUdJUKYQYcBxTphX5QQDCIoCNFdYvxcbBgry76Yue6MpXU7gzWI44cAVWQ5BXsA/exec';
 const TOKEN = new URLSearchParams(location.search).get('token');
+let SOMENTE_LEITURA = false;
 const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const msC   = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 document.getElementById('period').textContent = meses[now.getMonth()] + ' ' + now.getFullYear();
@@ -359,21 +361,8 @@ function renderItemAberto(item) {
   const ultimaAtualizacaoHtml = item.ultimaAtualizacao
     ? '<div class="last-update"><div class="last-update-label">Última atualização</div><div class="last-update-text">' + escapeHtml(item.ultimaAtualizacao) + '</div></div>'
     : '';
-  return '' +
-  '<div class="action-item active-item" data-responsible="' + escapeHtml(item.responsavel) + '" data-id="' + escapeHtml(item.codigo) + '">' +
-    '<div class="item-header">' +
-      '<div class="item-number" style="background:' + pilarCor + '">' + escapeHtml(item.codigo) + '</div>' +
-      '<div class="item-title-block">' +
-        '<p class="item-title">' + escapeHtml(item.descricao) + '</p>' +
-        '<div class="item-meta">' +
-          '<span class="meta-chip">👤 ' + escapeHtml(item.responsavel) + '</span>' +
-          (item.prazo ? '<span class="meta-chip">📅 ' + escapeHtml(item.prazo) + '</span>' : '') +
-          '<span class="badge" style="background:' + pr.bg + ';color:' + pr.cor + '">' + pr.label + '</span>' +
-          '<span class="badge" style="background:' + st.bg + ';color:' + st.cor + '">' + st.label + '</span>' +
-        '</div>' +
-      '</div>' +
-    '</div>' +
-    ultimaAtualizacaoHtml +
+
+  const camposEdicaoHtml = SOMENTE_LEITURA ? '' : (
     '<div class="update-fields">' +
       '<div class="field-row">' +
         '<div class="field-group" style="flex:0 0 170px">' +
@@ -394,7 +383,25 @@ function renderItemAberto(item) {
         '<label>Próximos Passos <span class="label-hint">— o que está planejado para o próximo mês? (opcional)</span></label>' +
         '<textarea id="nextsteps-' + item.codigo + '" name="nextsteps_' + item.codigo + '" class="update-textarea" placeholder="O que será feito a seguir?" rows="2" oninput="onFieldChange(\'' + item.codigo + '\')"></textarea>' +
       '</div>' +
+    '</div>'
+  );
+
+  return '' +
+  '<div class="action-item active-item" data-responsible="' + escapeHtml(item.responsavel) + '" data-id="' + escapeHtml(item.codigo) + '">' +
+    '<div class="item-header">' +
+      '<div class="item-number" style="background:' + pilarCor + '">' + escapeHtml(item.codigo) + '</div>' +
+      '<div class="item-title-block">' +
+        '<p class="item-title">' + escapeHtml(item.descricao) + '</p>' +
+        '<div class="item-meta">' +
+          '<span class="meta-chip">👤 ' + escapeHtml(item.responsavel) + '</span>' +
+          (item.prazo ? '<span class="meta-chip">📅 ' + escapeHtml(item.prazo) + '</span>' : '') +
+          '<span class="badge" style="background:' + pr.bg + ';color:' + pr.cor + '">' + pr.label + '</span>' +
+          '<span class="badge" style="background:' + st.bg + ';color:' + st.cor + '">' + st.label + '</span>' +
+        '</div>' +
+      '</div>' +
     '</div>' +
+    ultimaAtualizacaoHtml +
+    camposEdicaoHtml +
   '</div>';
 }
 
@@ -421,10 +428,13 @@ function renderItemConcluido(item) {
 }
 
 function renderItens(dados) {
+  SOMENTE_LEITURA = !!dados.somenteLeitura;
   document.getElementById('empresa-nome').textContent = dados.empresaNome || '';
   const tituloComEmpresa = 'Atualização Mensal ESAP' + (dados.empresaNome ? ' — ' + dados.empresaNome : '');
   document.getElementById('banner-title').textContent = tituloComEmpresa;
   document.title = tituloComEmpresa;
+
+  renderProgresso(dados.progresso);
 
   const porPilar = {};
   dados.itens.forEach(function(item) {
@@ -506,7 +516,42 @@ function renderItens(dados) {
   document.getElementById('period').textContent = dados.mes || meses[now.getMonth()] + ' ' + now.getFullYear();
 
   const btnEnviar = document.querySelector('.btn-primary');
-  if (btnEnviar) btnEnviar.disabled = false;
+  const btnRascunho = document.querySelector('.btn-secondary');
+  if (btnEnviar) {
+    btnEnviar.disabled = SOMENTE_LEITURA;
+    btnEnviar.style.display = SOMENTE_LEITURA ? 'none' : '';
+  }
+  if (btnRascunho) btnRascunho.style.display = SOMENTE_LEITURA ? 'none' : '';
+}
+
+function renderProgresso(progresso) {
+  const painel = document.getElementById('progresso-panel');
+  if (!progresso) { painel.innerHTML = ''; return; }
+
+  const somenteLeituraAviso = SOMENTE_LEITURA
+    ? '<div style="background:#e2e8f0;color:#334155;padding:10px 16px;border-radius:8px;margin-bottom:12px;font-size:13px">' +
+        '👁️ <strong>Modo somente leitura</strong> — o prazo de atualização deste mês encerrou. Você ainda pode acompanhar o andamento, mas para atualizar algum item, peça um novo link à GEF Capital.' +
+      '</div>'
+    : '';
+
+  const jaAtualizaram = (progresso.jaAtualizaram || []);
+  const faltam = (progresso.faltam || []);
+
+  const listaJaAtualizaram = jaAtualizaram.length
+    ? jaAtualizaram.map(function(p) { return escapeHtml(p.nome) + ' <span style="color:#94a3b8">(' + p.data + ')</span>'; }).join(', ')
+    : '<span style="color:#94a3b8">ninguém ainda</span>';
+
+  const listaFaltam = faltam.length
+    ? faltam.map(escapeHtml).join(', ')
+    : null;
+
+  painel.innerHTML =
+    somenteLeituraAviso +
+    '<div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:14px 20px;margin-bottom:20px">' +
+      '<p style="font-weight:600;margin-bottom:8px">📊 ' + progresso.atualizadosEsteMes + ' de ' + progresso.totalAbertos + ' itens em aberto atualizados este mês</p>' +
+      '<p style="font-size:13px;color:#475569;margin-bottom:' + (listaFaltam ? '4px' : '0') + '"><strong>Já atualizaram:</strong> ' + listaJaAtualizaram + '</p>' +
+      (listaFaltam ? '<p style="font-size:13px;color:#991b1b"><strong>Ainda sem atualização este mês:</strong> ' + listaFaltam + '</p>' : '') +
+    '</div>';
 }
 
 function mostrarErroCarregamento(mensagem) {
@@ -590,6 +635,10 @@ carregarFormulario();
 
 
 async function submitForm() {
+  if (SOMENTE_LEITURA) {
+    alert('Este link está em modo somente leitura — o prazo deste mês encerrou. Peça um novo link à GEF Capital para atualizar.');
+    return;
+  }
   const name = document.getElementById('submitter-name').value.trim();
   if (!name) {
     document.getElementById('submitter-name').focus();
